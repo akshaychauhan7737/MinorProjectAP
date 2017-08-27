@@ -25,7 +25,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //SESSION MANAGEMENT
 var session = require('express-session');
-app.use(session({ secret: 'AKshay-H89gS-!@Hu85-AShish', cookie: { maxAge: 60000 } }));
+//app.use(session({ secret: 'AKshay-H89gS-!@Hu85-AShish', cookie: { maxAge: 60000 } }));
+app.use(session({ secret: 'AKshay-H89gS-!@Hu85-AShish', cookie: { maxAge: null } }));
 
 
 
@@ -111,10 +112,10 @@ app.post("/register", function (req, res) {
 
 //DASHBOARD
 app.use("/dashboard", function (req, res, next) {
-    next();//bypass login
-    // if (req.session.user) {
-    //     next();
-    // } else res.redirect("/login");
+    // next();//bypass login
+    if (req.session.user) {
+        next();
+    } else res.redirect("/login");
 })
 app.use("/dashboard", express.static(path.join(__dirname, '/views/dashboard')));
 

@@ -1,0 +1,16 @@
+{
+  "name": "minorproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.4",
+    "express-session": "^1.15.5",
+    "parse-server": "*"
+  }
+}

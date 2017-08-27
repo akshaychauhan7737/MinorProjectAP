@@ -3,6 +3,10 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var api = require('./module/api/api');
 
+//INIT ejs for DYNAMIC PAGES
+app.engine('ejs', require('ejs').renderFile);
+app.set('view engine', 'ejs');
+
 
 //SETUP PARSE SERVER
 var Parse = require('parse/node');
@@ -20,9 +24,34 @@ var session = require('express-session');
 app.use(session({ secret: 'AKshay-H89gS-!@Hu85-AShish', cookie: { maxAge: 60000 } }));
 
 
+
+//FORGET PASSWORD
+app.use("/forgetpassword", function (req, res) {
+    if (!req.body.email) {
+        // var data = { message: "You are Successfully Registered", redirect: true, redirectURL: "/login" };
+        // res.render('message', data);
+        res.redirect("/login");
+    }
+    Parse.User.requestPasswordReset(req.body.email, {
+        success: function () {
+            console.log("success");
+            var data = { message: "We hav Sent you a reset link to your email", success: true, redirect: false, redirectURL: "/login" };
+            res.render('message', data);
+        },
+        error: function (error) {
+            // Show the error message somewhere
+            var data = { message: error.message, success: false, redirect: false, redirectURL: "/login" };
+            res.render('message', data);
+            res.send();
+        }
+    });
+})
+
+
+
 //API 
 
-app.use("/API",api);
+app.use("/API", api);
 //LOGIN
 app.use("/login", function (req, res, next) {
     if (req.session.user) {

@@ -14,6 +14,12 @@ Parse.initialize("APPLICATION_ID");
 Parse.serverURL = 'http://minorproject.herokuapp.com/parse';
 var app = express();
 
+
+//INIT ejs for DYNAMIC PAGES
+app.engine('ejs', require('ejs').renderFile);
+app.set('view engine', 'ejs');
+
+
 //post data json decode
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -67,12 +73,12 @@ app.post("/login", function (req, res) {
         },
         error: function (user, error) {
             console.log(req.body.email, req.body.password);
-            res.send(error);
+            var data = { message: error.message, success: false, redirect: true, redirectURL: "/login" };
+            res.render("module/message", data);
         }
     });
 
 })
-
 
 
 //Register
@@ -92,16 +98,18 @@ app.post("/register", function (req, res) {
 
     user.signUp(null, {
         success: function (user) {
-            res.send("Login Success Redirection");
-            res.redirect("/login");
+            var data = { message: "Your account has been Created", success: true, redirect: true, redirectURL: "/login" };
+            res.render('message', data);
         },
         error: function (user, error) {
             console.log(error);
-            res.send(error);
+            var data = { message: error.message, success: false, redirect: true, redirectURL: "/register" };
+            res.render('message', data);
         }
     });
 
 })
+
 
 //DASHBOARD
 app.use("/dashboard", function (req, res, next) {

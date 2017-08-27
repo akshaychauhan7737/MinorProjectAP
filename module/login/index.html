@@ -16,6 +16,20 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <!-- Custom Theme Style -->
   <link href="css/custom.min.css" rel="stylesheet">
+  <script>
+    function showForget(type) {
+      var login = document.getElementById("login");
+      var forget = document.getElementById("forget");
+
+      if (type == "login") {
+        login.style.display = "block";
+        forget.style.display = "none";
+      } else {
+        login.style.display = "none";
+        forget.style.display = "block";
+      }
+    }
+  </script>
 </head>
 
 <body class="login">
@@ -25,7 +39,7 @@
 
     <div class="login_wrapper">
       <div class="animate form login_form">
-        <section class="login_content">
+        <section class="login_content" id="login">
           <form method="POST">
             <h1>Login Form</h1>
             <div>
@@ -36,22 +50,52 @@
             </div>
             <div>
               <button class="btn btn-default submit" type="submit">Log in</button>
-              <a class="reset_pass" href="#">Lost your password?</a>
+              <a class="reset_pass" onClick="showForget('forget');" href="javascript::;">Lost your password?</a>
             </div>
 
             <div class="clearfix"></div>
 
             <div class="separator">
               <p class="change_link">New to site?
-                <a href="http://localhost:3000/register" class="to_register"> Create Account </a>
+                <a href="/register" class="to_register"> Create Account </a>
               </p>
 
               <div class="clearfix"></div>
               <br />
 
               <div>
-                <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-                <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+                <h1><i class="fa fa-paw"></i> Web Analizer!</h1>
+                <p>©2017 All Rights Reserved. Web Analizer!</p>
+              </div>
+            </div>
+          </form>
+        </section>
+
+
+        <section class="login_content" style="display:none;" id="forget">
+          <form method="POST" action="/forgetpassword">
+            <h1>Forget Password</h1>
+            <div>
+              <input name="email" type="text" class="form-control" placeholder="Email" required="" />
+            </div>
+            <div>
+              <button class="btn btn-default submit" type="submit">Send Email</button>
+              <a class="reset_pass" onClick="showForget('login');" href="javascript::">Login</a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="separator">
+              <p class="change_link">New to site?
+                <a href="/register" class="to_register"> Create Account </a>
+              </p>
+
+              <div class="clearfix"></div>
+              <br />
+
+              <div>
+                <h1><i class="fa fa-paw"></i> Web Analizer!</h1>
+                <p>©2017 All Rights Reserved. Web Analizer!</p>
               </div>
             </div>
           </form>

@@ -9,8 +9,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Admin Pannel! | </title>
-  <script src="js/angular.min.js"></script>
-
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"> </script>
+<script src="angular/app.js"></script>
+<link rel="stylesheet" type="" href="css/style.css">
 
 
   <!-- Bootstrap -->
@@ -206,7 +208,7 @@
 
       <!-- page content -->
       <div class="right_col" role="main">
-
+              <ui-view></ui-view>
       </div>
       <!-- /page content -->
 

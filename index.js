@@ -1,6 +1,7 @@
 var express = require("express");
 var path = require('path');
 var bodyParser = require('body-parser');
+var api = require('./module/api/api');
 
 
 //SETUP PARSE SERVER
@@ -19,7 +20,9 @@ var session = require('express-session');
 app.use(session({ secret: 'AKshay-H89gS-!@Hu85-AShish', cookie: { maxAge: 60000 } }));
 
 
+//API 
 
+app.use("/API",api);
 //LOGIN
 app.use("/login", function (req, res, next) {
     if (req.session.user) {
@@ -73,9 +76,10 @@ app.post("/register", function (req, res) {
 
 //DASHBOARD
 app.use("/dashboard", function (req, res, next) {
-    if (req.session.user) {
-        next();
-    } else res.redirect("/login");
+    next();//bypass login
+    // if (req.session.user) {
+    //     next();
+    // } else res.redirect("/login");
 })
 app.use("/dashboard", express.static(path.join(__dirname, '/module/dashboard')));
 

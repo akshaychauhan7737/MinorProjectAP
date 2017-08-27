@@ -3,9 +3,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var api = require('./module/api/api');
 
-//INIT ejs for DYNAMIC PAGES
-app.engine('ejs', require('ejs').renderFile);
-app.set('view engine', 'ejs');
+
 
 
 //SETUP PARSE SERVER
@@ -74,7 +72,7 @@ app.post("/login", function (req, res) {
         error: function (user, error) {
             console.log(req.body.email, req.body.password);
             var data = { message: error.message, success: false, redirect: true, redirectURL: "/login" };
-            res.render("module/message", data);
+            res.render("message", data);
         }
     });
 

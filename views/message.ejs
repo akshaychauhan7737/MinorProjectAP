@@ -1,0 +1,20 @@
+<% if(redirect){%>
+    <meta http-equiv="refresh" content="3;url=<%= redirectURL %>" />
+    <% }%>
+        <div class="row" style="height:auto;">
+            <div class="col-xs-12" style="height:100%;background-color:#D4D6D8;">
+                <div class="col-xs-12 col-md-6" style="box-shadow: 10px 10px 5px #888888;padding:50px;background-color:white;position:absolute;transform:translate(-50%);top:20%; left:50%;">
+                    <% if(success){%>
+                        <center><img src="http://www.freeiconspng.com/uploads/tick-icon-30.png" style="width:200px;height:200px;"></center>
+                        <%}else {%>
+                            <center><img src="http://www.pngmart.com/files/3/Red-Cross-Transparent-PNG-283x279.png" style="width:200px;height:200px;"></center>
+                            <%}%>
+                                <h1 style="text-align:center;">
+                                    <%= message %>
+                                </h1>
+                                <% if(redirect){%>
+                                    <p style="text-align:center">Redirection...</p>
+                                    <% } %>
+                </div>
+            </div>
+        </div>

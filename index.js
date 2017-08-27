@@ -62,7 +62,7 @@ app.use("/login", function (req, res, next) {
         res.redirect("/dashboard");
     } else next();
 })
-app.use('/login', express.static(path.join(__dirname, '/module/login')));
+app.use('/login', express.static(path.join(__dirname, '/views/login')));
 app.post("/login", function (req, res) {
     Parse.User.logIn(req.body.email, req.body.password, {
         success: function (user) {
@@ -85,7 +85,7 @@ app.use("/register", function (req, res, next) {
         res.redirect("/dashboard");
     } else next();
 })
-app.use('/register', express.static(path.join(__dirname, '/module/register')));
+app.use('/register', express.static(path.join(__dirname, '/views/register')));
 app.post("/register", function (req, res) {
     console.log(req.body);
     var user = new Parse.User();
@@ -116,7 +116,7 @@ app.use("/dashboard", function (req, res, next) {
     //     next();
     // } else res.redirect("/login");
 })
-app.use("/dashboard", express.static(path.join(__dirname, '/module/dashboard')));
+app.use("/dashboard", express.static(path.join(__dirname, '/views/dashboard')));
 
 
 //OTHERWISE
